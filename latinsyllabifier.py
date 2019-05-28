@@ -13,6 +13,12 @@ syllabifier rules: http://wheelockslatin.com/chapters/introduction/introduction_
 """
 import string
 
+def list_reverser(l):
+    if len(l) == 0:
+        return []
+    else:
+        return [l[-1]] + list_reverser(l[:-1])
+
 def liner(passage):
     enter = -1
     lines = []
@@ -35,7 +41,7 @@ def worder(line):
                 searching = False   
                 line = line[index + 1:]
     line += ' '
-    line = line.lower().translate(str.maketrans('', '', string.punctuation)).translate(str.maketrans('', '', string.digits)).strip()
+    line = line.lower().translate(str.maketrans('', '', string.punctuation)).translate(str.maketrans('', '', string.digits)).strip() + ' '
     while '  ' in line:
         line = line.replace('  ', ' ')
     for i in range(len(line)):
@@ -87,9 +93,11 @@ def sounder(line):
             chars[pair[0]][1] = pair[1]
             del chars[pair[0] + 1]
         lineChars.append(chars)
-    
+
     deletedWords = []
-    for i in range(len(lineChars) - 1):
+    l = list_reverser(list(range(len(lineChars)-1)))
+    
+    for i in l:
         if lineChars[i][-1][0] == 'v':
             nextWord = ''
             for x in lineChars[i+1]:
@@ -116,7 +124,7 @@ def sounder(line):
             elif lineChars[i + 1][1][0] == 'v' and lineChars[i + 1][0][1] == 'h':
                 lineChars[i] = lineChars[i][:-2] + lineChars[i + 1][1:]
                 deletedWords.append(i+1)
-    for w in reversed(deletedWords):
+    for w in deletedWords:
         del lineChars[w]
         
     return(lineChars)
@@ -124,12 +132,13 @@ def sounder(line):
 def print_sounder(sounderOutput):
     line = ''
     for word in sounderOutput:
-        print(word)
         letters = ''
         for letter in word:
             letters += letter[1]
         line += letters + ' '
-    print(line[:-1] + '\n')
+    print(line[:-1])
+    for word in sounderOutput:
+        print(word)
 
 def line_syllabifier(line):
     lineSyllables = []
@@ -217,10 +226,6 @@ def print_line_syllabifier(syllabifierOutput):
             sounds += sound[1]
         line.append(sounds)
     return(line)
-
-def syllabifier(passage):
-    syllables = map(line_syllabifier, liner(passage))
-    return map(print_line_syllabifier, syllables)
 
 def syllabifier(passage):
     syllables = []
