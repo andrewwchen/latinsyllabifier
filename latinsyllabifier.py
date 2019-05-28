@@ -56,23 +56,23 @@ def sounder(line):
     for word in words:
         chars = []
         for i in range(len(word)):
-            if word[i] in ['a', 'e', 'o']:
+            if word[i] in ['a', 'e', 'o', 'y']:
                 chars.append(['v', word[i]])
             elif word[i] == 'u' and not word[i-1] == 'q':
                 chars.append(['v', word[i]])
             elif word[i] == 'i':
                 if i == 0:
-                    if word[1] not in ['a', 'e', 'i', 'o', 'u']:
+                    if word[1] not in ['a', 'e', 'i', 'o', 'u', 'y']:
                         chars.append(['v', word[0]])
                     else:
                         chars.append(['c', word[i]])
                 elif i != len(word) - 1:
-                    if not (word[i - 1] in ['a', 'e', 'i', 'o'] or (word[i-1] == 'u' and not word[i-2] == 'q')) or not word[i + 1] in ['a', 'e', 'i', 'o', 'u']:
+                    if not (word[i - 1] in ['a', 'e', 'i', 'o', 'y'] or (word[i-1] == 'u' and not word[i-2] == 'q')) or not word[i + 1] in ['a', 'e', 'i', 'o', 'u', 'y']:
                         chars.append(['v', word[i]])
                     else:
                         chars.append(['c', word[i]])
                 elif i == len(word) - 1:
-                    if not (word[i - 1] in ['a', 'e', 'i', 'o'] or (word[i-1] == 'u' and not word[i-2] == 'q')):
+                    if not (word[i - 1] in ['a', 'e', 'i', 'o', 'y'] or (word[i-1] == 'u' and not word[i-2] == 'q')):
                         chars.append(['v', word[i]])
                     else:
                         chars.append(['c', word[i]])
