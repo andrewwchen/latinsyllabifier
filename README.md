@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # latinsyllabifier
 ## Features
 Syllabifies a Latin passage line-by-line through:
@@ -9,6 +7,3 @@ Syllabifies a Latin passage line-by-line through:
 4. Groups the consonant sounds with vowel sounds based on syllabification rules (line_syllabifier function)
 5. Syllabifies whole passages (syllabifier function) as a list lists of syllables of each line
 6. Syllabifies passages with line numbers (syllabifier_line_numbers function) as a list of tuples (#, [syllables])
-
-Running latinsyllabifier.py will syllabify with line numbers the passage inside latin.txt.
->>>>>>> 4150e0443561a53c0ecafe65883d237152036066
