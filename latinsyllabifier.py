@@ -222,6 +222,12 @@ def syllabifier(passage):
     syllables = map(line_syllabifier, liner(passage))
     return map(print_line_syllabifier, syllables)
 
+def syllabifier(passage):
+    syllables = []
+    for line in liner(passage):
+        syllables.append(print_line_syllabifier(line_syllabifier(line)))
+    return syllables
+
 def syllabifier_line_numbers(passage):
     lines = syllabifier(passage)
     output = []
@@ -237,5 +243,3 @@ def list_lister(listOlists):
 
 with open('latin.txt', 'r') as file:
     passage = file.read()
-
-list_lister(syllabifier_line_numbers(passage))
