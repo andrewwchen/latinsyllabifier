@@ -71,11 +71,8 @@ def sounder(line):
                         chars.append(['v', word[i]])
                     else:
                         chars.append(['c', word[i]])
-                elif i == len(word) - 1:
-                    if not (word[i - 1] in ['a', 'e', 'i', 'o', 'y'] or (word[i-1] == 'u' and not word[i-2] == 'q')):
-                        chars.append(['v', word[i]])
-                    else:
-                        chars.append(['c', word[i]])
+                else:
+                    chars.append(['v', word[i]])
             else:
                 chars.append(['c', word[i]])
         
