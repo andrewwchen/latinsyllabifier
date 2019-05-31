@@ -41,7 +41,7 @@ def worder(line):
                 searching = False   
                 line = line[index + 1:]
     line += ' '
-    line = line.lower().translate(str.maketrans('', '', string.punctuation)).translate(str.maketrans('', '', string.digits)).strip() + ' '
+    line = line.lower().translate(str.maketrans('', '', string.punctuation)).translate(str.maketrans('', '', string.digits)).replace('x', 'cs').replace('z', 'ds').strip() + ' '
     while '  ' in line:
         line = line.replace('  ', ' ')
     for i in range(len(line)):
@@ -127,6 +127,7 @@ def sounder(line):
     return(lineChars)
 
 def print_sounder(sounderOutput):
+    print('')
     line = ''
     for word in sounderOutput:
         letters = ''
