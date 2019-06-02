@@ -84,6 +84,7 @@ def sounder(line):
                     pairs.append((i, pair))
             elif chars[i][0] == 'v' and chars[i + 1][0] == 'v':
                 pair = chars[i][1] + chars[i + 1][1]
+# ['ae', 'au', 'ei', 'eu', 'oe', 'ui']
                 if pair in ['ae', 'au', 'ei', 'eu', 'oe', 'ui']:
                     pairs.append((i, pair))
         for pair in reversed(pairs):

@@ -7,3 +7,5 @@ Syllabifies a Latin passage line-by-line through:
 4. Groups the consonant sounds with vowel sounds based on syllabification rules (line_syllabifier function)
 5. Syllabifies whole passages (syllabifier function) as a list lists of syllables of each line
 6. Syllabifies passages with line numbers (syllabifier_line_numbers function) as a list of tuples (#, [syllables])
+
+Testing of each function and error analysis can be found in the jupyter notebook latinsyllabifier.ipynb
