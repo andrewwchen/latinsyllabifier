@@ -3,6 +3,7 @@ This repository contains a set of functions used for dividing Latin poetry into 
 
 
 >*Part of a paper on quantifying the phonetic difference between Virgil's Aeneid and it's translations for QSS 30.12.*
+
 A digital version of this paper can be found here:
 https://docs.google.com/document/d/1KECKDe_43vN8M1XoZKLlk_22Qq_ChuoQZIVAKWEiWt0/edit?usp=sharing
 
