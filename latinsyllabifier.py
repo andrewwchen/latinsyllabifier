@@ -12,14 +12,13 @@ syllabifier rules: http://wheelockslatin.com/chapters/introduction/introduction_
 
 """
 import string
-from pathlib import Path
 
 
-def list_reverser(l):
-    if len(l) == 0:
+def list_reverser(list_to_reverse):
+    if len(list_to_reverse) == 0:
         return []
     else:
-        return [l[-1]] + list_reverser(l[:-1])
+        return [list_to_reverse[-1]] + list_reverser(list_to_reverse[:-1])
 
 
 def liner(passage):
@@ -57,7 +56,7 @@ def worder(line):
 
 def sounder(line):
     words = worder(line)
-    lineChars = []
+    line_chars = []
     for word in words:
         chars = []
         for i in range(len(word)):
@@ -95,139 +94,139 @@ def sounder(line):
         for pair in reversed(pairs):
             chars[pair[0]][1] = pair[1]
             del chars[pair[0] + 1]
-        lineChars.append(chars)
+        line_chars.append(chars)
 
-    deletedWords = []
-    l = list_reverser(list(range(len(lineChars)-1)))
+    deleted_words = []
+    l = list_reverser(list(range(len(line_chars)-1)))
     
     for i in l:
-        if lineChars[i][-1][0] == 'v':
-            nextWord = ''
-            for x in lineChars[i+1]:
-                nextWord += x[1]
-            if nextWord in ['esse', 'es', 'est', 'estis', 'eram', 'eras', 'erat', 'eramus', 'eratis', 'erant', 'essem', 'esses', 'esset', 'essemus', 'essetis', 'essent', 'ero', 'eris', 'erit', 'erimus', 'eritis', 'erint', 'este', 'ens']:
-                lineChars[i] = lineChars[i] + lineChars[i + 1][1:]
-                deletedWords.append(i+1)
-            elif lineChars[i + 1][0][0] == 'v':
-                lineChars[i] = lineChars[i][:-1] + lineChars[i + 1]
-                deletedWords.append(i+1)
-            elif lineChars[i + 1][1][0] == 'v' and lineChars[i + 1][0][1] == 'h':
-                lineChars[i] = lineChars[i][:-1] + lineChars[i + 1][1:]
-                deletedWords.append(i+1)
-        elif lineChars[i][-2][0] == 'v' and lineChars[i][-1][1] == 'm':
-            nextWord = ''
-            for x in lineChars[i+1]:
-                nextWord += x[1]
-            if nextWord in ['esse', 'es', 'est', 'estis', 'eram', 'eras', 'erat', 'eramus', 'eratis', 'erant', 'essem', 'esses', 'esset', 'essemus', 'essetis', 'essent', 'ero', 'eris', 'erit', 'erimus', 'eritis', 'erint', 'este', 'ens']:
-                lineChars[i] = lineChars[i] + lineChars[i + 1][1:]
-                deletedWords.append(i+1)
-            elif lineChars[i + 1][0][0] == 'v':
-                lineChars[i] = lineChars[i][:-2] + lineChars[i + 1]
-                deletedWords.append(i+1)
-            elif lineChars[i + 1][1][0] == 'v' and lineChars[i + 1][0][1] == 'h':
-                lineChars[i] = lineChars[i][:-2] + lineChars[i + 1][1:]
-                deletedWords.append(i+1)
-    for w in deletedWords:
-        del lineChars[w]
+        if line_chars[i][-1][0] == 'v':
+            next_word = ''
+            for x in line_chars[i+1]:
+                next_word += x[1]
+            if next_word in ['esse', 'es', 'est', 'estis', 'eram', 'eras', 'erat', 'eramus', 'eratis', 'erant', 'essem', 'esses', 'esset', 'essemus', 'essetis', 'essent', 'ero', 'eris', 'erit', 'erimus', 'eritis', 'erint', 'este', 'ens']:
+                line_chars[i] = line_chars[i] + line_chars[i + 1][1:]
+                deleted_words.append(i+1)
+            elif line_chars[i + 1][0][0] == 'v':
+                line_chars[i] = line_chars[i][:-1] + line_chars[i + 1]
+                deleted_words.append(i+1)
+            elif line_chars[i + 1][1][0] == 'v' and line_chars[i + 1][0][1] == 'h':
+                line_chars[i] = line_chars[i][:-1] + line_chars[i + 1][1:]
+                deleted_words.append(i+1)
+        elif line_chars[i][-2][0] == 'v' and line_chars[i][-1][1] == 'm':
+            next_word = ''
+            for x in line_chars[i+1]:
+                next_word += x[1]
+            if next_word in ['esse', 'es', 'est', 'estis', 'eram', 'eras', 'erat', 'eramus', 'eratis', 'erant', 'essem', 'esses', 'esset', 'essemus', 'essetis', 'essent', 'ero', 'eris', 'erit', 'erimus', 'eritis', 'erint', 'este', 'ens']:
+                line_chars[i] = line_chars[i] + line_chars[i + 1][1:]
+                deleted_words.append(i+1)
+            elif line_chars[i + 1][0][0] == 'v':
+                line_chars[i] = line_chars[i][:-2] + line_chars[i + 1]
+                deleted_words.append(i+1)
+            elif line_chars[i + 1][1][0] == 'v' and line_chars[i + 1][0][1] == 'h':
+                line_chars[i] = line_chars[i][:-2] + line_chars[i + 1][1:]
+                deleted_words.append(i+1)
+    for w in deleted_words:
+        del line_chars[w]
         
-    return lineChars
+    return line_chars
 
 
-def print_sounder(sounderOutput):
+def print_sounder(sounder_output):
     print('')
     line = ''
-    for word in sounderOutput:
+    for word in sounder_output:
         letters = ''
         for letter in word:
             letters += letter[1]
         line += letters + ' '
     print(line[:-1])
-    for word in sounderOutput:
+    for word in sounder_output:
         print(word)
 
 
 def line_syllabifier(line):
-    lineSyllables = []
+    line_syllables = []
     for word in sounder(line):
         syllables = []
-        vowelCount = 0
+        vowel_count = 0
         for sound in word:
             if sound[0] == 'v':
-                vowelCount += 1
+                vowel_count += 1
         
-        if vowelCount == 1:
+        if vowel_count == 1:
             syllables.append(word)
 
         else:
             first = True
-            remainingVowels = vowelCount
+            remaining_vowels = vowel_count
             for i in range(len(word)):
                 if word[i][0] == 'v':
-                    remainingVowels -= 1
-                    if first == True:
+                    remaining_vowels -= 1
+                    if first:
                         first = False
-                        consonantCount = 0
-                        nextVowel = False
-                        while nextVowel == False:
-                            if word[i + consonantCount + 1][0] == 'v':
-                                nextVowel = True
+                        consonant_count = 0
+                        next_vowel = False
+                        while not next_vowel:
+                            if word[i + consonant_count + 1][0] == 'v':
+                                next_vowel = True
                             else:
-                                consonantCount += 1
-                        if consonantCount == 0:
+                                consonant_count += 1
+                        if consonant_count == 0:
                             syllables.append(word[:i + 1])
-                        elif consonantCount == 1:
+                        elif consonant_count == 1:
                             syllables.append(word[:i + 1])
                         else:
-                            syllables.append(word[:i + consonantCount])
-                    elif remainingVowels == 0:
-                        consonantCount = 0
-                        lastVowel = False
-                        while lastVowel == False:
-                            if word[i - consonantCount - 1][0] == 'v':
-                                lastVowel = True
+                            syllables.append(word[:i + consonant_count])
+                    elif remaining_vowels == 0:
+                        consonant_count = 0
+                        last_vowel = False
+                        while not last_vowel:
+                            if word[i - consonant_count - 1][0] == 'v':
+                                last_vowel = True
                             else:
-                                consonantCount += 1
-                        if consonantCount == 0:
+                                consonant_count += 1
+                        if consonant_count == 0:
                             syllables.append(word[i:])
                         else:
                             syllables.append(word[i-1:])
                     else:
-                        consonantCountBefore = 0
-                        consonantCountAfter = 0
-                        lastVowel = False
-                        nextVowel = False
-                        while lastVowel == False:
-                            if word[i - consonantCountBefore - 1][0] == 'v':
-                                lastVowel = True
+                        consonant_count_before = 0
+                        consonant_count_after = 0
+                        last_vowel = False
+                        next_vowel = False
+                        while not last_vowel:
+                            if word[i - consonant_count_before - 1][0] == 'v':
+                                last_vowel = True
                             else:
-                                consonantCountBefore += 1
-                        while nextVowel == False:
-                            if word[i + consonantCountAfter + 1][0] == 'v':
-                                nextVowel = True
+                                consonant_count_before += 1
+                        while not next_vowel:
+                            if word[i + consonant_count_after + 1][0] == 'v':
+                                next_vowel = True
                             else:
-                                consonantCountAfter += 1
-                        if consonantCountBefore == 0:
-                            if consonantCountAfter == 0:
+                                consonant_count_after += 1
+                        if consonant_count_before == 0:
+                            if consonant_count_after == 0:
                                 syllables.append(word[i:i + 1])
-                            elif consonantCountAfter == 1:
+                            elif consonant_count_after == 1:
                                 syllables.append(word[i:i + 1])
                             else:
-                                syllables.append(word[i:i + consonantCountAfter])
+                                syllables.append(word[i:i + consonant_count_after])
                         else:
-                            if consonantCountAfter == 0:
+                            if consonant_count_after == 0:
                                 syllables.append(word[i - 1:i + 1])
-                            elif consonantCountAfter == 1:
+                            elif consonant_count_after == 1:
                                 syllables.append(word[i - 1:i + 1])
                             else:
-                                syllables.append(word[i - 1:i + consonantCountAfter])
+                                syllables.append(word[i - 1:i + consonant_count_after])
         for s in syllables:
-            lineSyllables.append(s)
-    return lineSyllables
+            line_syllables.append(s)
+    return line_syllables
 
 
-def print_line_syllabifier(syllabifierOutput):
+def print_line_syllabifier(syllabifier_output):
     line = []
-    for syllable in syllabifierOutput:
+    for syllable in syllabifier_output:
         sounds = ''
         for sound in syllable:
             sounds += sound[1]
@@ -245,16 +244,13 @@ def syllabifier(passage):
 def syllabifier_line_numbers(passage):
     lines = syllabifier(passage)
     output = []
-    lineNumber = 1
+    line_number = 1
     for line in lines:
-        output.append((lineNumber, line))
-        lineNumber += 1
+        output.append((line_number, line))
+        line_number += 1
     return output
 
 
-def list_lister(listOlists):
-    for list in listOlists:
-        print(list)
-
-
-
+def list_lister(list_o_lists):
+    for list_to_print in list_o_lists:
+        print(list_to_print)
