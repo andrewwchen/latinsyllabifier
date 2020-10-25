@@ -1,11 +1,12 @@
 # Syllabifier for Latin Poetry by Andrew W. Chen
-This repository contains a set of functions used for dividing Latin poetry into component syllables for quantitative analysis. Testing of each function and error analysis can be found in the jupyter notebook **latinsyllabifier.ipynb**. The Latin source text can be found at https://tesserae.caset.buffalo.edu/sources.php from the Tesserae Project.
+This repository contains a set of functions used for dividing Latin poetry into component syllables for quantitative analysis. Testing of each function and error analysis can be viewed in the jupyter notebook **latinsyllabifier.ipynb**. If you would like to run the jupyter notebook yourself, try this Binder link: https://mybinder.org/v2/gh/chenmasterandrew/latinsyllabifier/master
 
 
->*Part of a paper on quantifying the phonetic difference between Virgil's Aeneid and it's translations for QSS 30.12.*
+>The Latin source texts for this projects can be found at https://github.com/tesserae/tesserae.
 
->A digital version of this paper can be found here:
-https://docs.google.com/document/d/1KECKDe_43vN8M1XoZKLlk_22Qq_ChuoQZIVAKWEiWt0/edit?usp=sharing
+
+>This projects is part of a paper on quantifying the phonetic difference between Virgil's Aeneid and it's translations for QSS 30.12. A digital version of this paper can be found here: https://docs.google.com/document/d/1KECKDe_43vN8M1XoZKLlk_22Qq_ChuoQZIVAKWEiWt0/edit?usp=sharing
+
 
 ## Features
 Syllabifies a Latin passage line-by-line through:
