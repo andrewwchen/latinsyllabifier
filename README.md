@@ -1,5 +1,5 @@
 # Syllabifier for Latin Poetry by Andrew W. Chen
-A library functions used for dividing Latin poetry into component syllables for quantitative analysis. Testing of each function and error analysis can be viewed in the jupyter notebook **latinsyllabifier.ipynb**. If you would like to run the jupyter notebook yourself, try this Binder link: https://mybinder.org/v2/gh/chenmasterandrew/latinsyllabifier/master
+A library of functions used for dividing Latin poetry into component syllables for quantitative analysis. Testing of each function and error analysis can be viewed in the jupyter notebook **latinsyllabifier.ipynb**. If you would like to run the jupyter notebook yourself, try this Binder link: https://mybinder.org/v2/gh/chenmasterandrew/latinsyllabifier/master
 
 
 >The Latin source texts for this projects can be found at https://github.com/tesserae/tesserae.
