@@ -12,6 +12,7 @@ syllabifier rules: http://wheelockslatin.com/chapters/introduction/introduction_
 
 """
 import string
+from pathlib import Path
 
 
 def list_reverser(l):
@@ -254,4 +255,18 @@ def syllabifier_line_numbers(passage):
 def list_lister(listOlists):
     for list in listOlists:
         print(list)
+
+
+with open('aeneid_example.txt', 'r') as file:
+    aeneid_text = file.read()
+
+passage = aeneid_text
+
+
+def passage_picker(data_folder, file_to_open):
+    global passage
+    path = Path(data_folder) / file_to_open
+    with open(path, 'r') as file:
+        passage = file.read()
+    return passage
 
