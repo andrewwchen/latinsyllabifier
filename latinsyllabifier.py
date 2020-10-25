@@ -13,11 +13,13 @@ syllabifier rules: http://wheelockslatin.com/chapters/introduction/introduction_
 """
 import string
 
+
 def list_reverser(l):
     if len(l) == 0:
         return []
     else:
         return [l[-1]] + list_reverser(l[:-1])
+
 
 def liner(passage):
     enter = -1
@@ -27,7 +29,8 @@ def liner(passage):
         if passage[i] == '\n':
             lines.append(passage[enter + 1:i])
             enter = i
-    return(lines)
+    return lines
+
 
 def worder(line):
     space = -1
@@ -48,7 +51,8 @@ def worder(line):
         if line[i] == ' ':
             words.append(line[space + 1:i])
             space = i
-    return(words)
+    return words
+
 
 def sounder(line):
     words = worder(line)
@@ -125,7 +129,8 @@ def sounder(line):
     for w in deletedWords:
         del lineChars[w]
         
-    return(lineChars)
+    return lineChars
+
 
 def print_sounder(sounderOutput):
     print('')
@@ -138,6 +143,7 @@ def print_sounder(sounderOutput):
     print(line[:-1])
     for word in sounderOutput:
         print(word)
+
 
 def line_syllabifier(line):
     lineSyllables = []
@@ -215,7 +221,8 @@ def line_syllabifier(line):
                                 syllables.append(word[i - 1:i + consonantCountAfter])
         for s in syllables:
             lineSyllables.append(s)
-    return(lineSyllables)
+    return lineSyllables
+
 
 def print_line_syllabifier(syllabifierOutput):
     line = []
@@ -224,13 +231,15 @@ def print_line_syllabifier(syllabifierOutput):
         for sound in syllable:
             sounds += sound[1]
         line.append(sounds)
-    return(line)
+    return line
+
 
 def syllabifier(passage):
     syllables = []
     for line in liner(passage):
         syllables.append(print_line_syllabifier(line_syllabifier(line)))
     return syllables
+
 
 def syllabifier_line_numbers(passage):
     lines = syllabifier(passage)
@@ -240,10 +249,9 @@ def syllabifier_line_numbers(passage):
         output.append((lineNumber, line))
         lineNumber += 1
     return output
-            
+
+
 def list_lister(listOlists):
     for list in listOlists:
         print(list)
 
-with open('latin.txt', 'r') as file:
-    passage = file.read()
